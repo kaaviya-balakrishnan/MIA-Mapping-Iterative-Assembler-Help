@@ -25,5 +25,3 @@ Workflow
 
 Duplicate removal did not make significant changes
 mapping_from_fasta.batch is not necessary 
-
-Spermophilus folder contains scripts used for a research project 
