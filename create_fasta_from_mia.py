@@ -1,3 +1,4 @@
+# This script is needed for mia_post_processing.batch to run
 #!/usr/bin/env python
 
 import sys
