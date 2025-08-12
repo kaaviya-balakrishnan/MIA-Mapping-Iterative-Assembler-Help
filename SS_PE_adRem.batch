@@ -1,0 +1,16 @@
+#!/bin/bash -l
+#SBATCH --job-name=AdRem
+#SBATCH --partition=long
+#SBATCH --ntasks=4
+#SBATCH --mem 32G
+#SBATCH --constrain=xeon2680v4|xeon2670v0|xeon4890v2|xeon2680v3
+
+
+#pathtoadrem
+AdRem=/home/users/mbaca/anthill23_soft/adapterremoval-2.3.1/build
+
+
+
+#run AdRem
+
+for i in *_R1_001.fastq.gz;do ${AdRem}/AdapterRemoval --file1  $i --file2  ${i%_R1_001.fastq.gz}_R2_001.fastq.gz  --threads 4 --trimns --trimqualities --gzip  --minalignmentlength 4 --collapse --adapter2 GGAAGAGCGTCGTGTAGGGAAAGAGTGT --basename ${i%_R1_001.fastq.gz}; done

@@ -1,0 +1,39 @@
+#!/bin/bash -l
+#SBATCH --job-name=bwa_aln
+#SBATCH --partition=long
+#SBATCH --ntasks=12
+#SBATCH --mem 64G
+
+for i in *.fasta; do
+fname=$(basename $i .fasta)
+
+#Check sample and library info
+if [ ${fname: -1} == "s" ]; then
+ lib=${fname: -3}
+ samp_name=${fname:0:$(( $(echo -n $fname|wc -c)-3))}
+else
+ lib=${fname: -2}
+ samp_name=${fname:0:$(( $(echo -n $fname|wc -c)-2))}
+fi
+
+echo "sample:" $fname
+echo "lib:" $lib
+echo "sample_name:" $samp_name
+
+# Map with bwa aln
+bwa aln -t 12 -l 16500 -n 0.01 -o 2 '/mnt/mfs/zagdos/MICROTUS_GENOMES/mtDNA_refs/Spermophilus/Spermophilus_citellus_rcrs_mtDNA.fa' $i > ${fname}_SpermCit2.sai
+
+# Generate SAM and convert to BAM
+bwa samse '/mnt/mfs/zagdos/MICROTUS_GENOMES/mtDNA_refs/Spermophilus/Spermophilus_citellus_rcrs_mtDNA.fa' ${fname}_SpermCit2.sai $i | \
+  samtools view -@ 12 -q 25 -b | samtools sort -@ 12 > ${fname}_SpermCit2_aln.bam
+
+# Index BAM
+samtools index ${fname}_SpermCit2_aln.bam
+
+# Mapping stats
+samtools flagstat ${fname}_SpermCit2_aln.bam > ${fname}_SpermCit2_aln.stats
+
+# Remove intermediate files
+rm ${fname}_SpermCit2.sai
+
+done
