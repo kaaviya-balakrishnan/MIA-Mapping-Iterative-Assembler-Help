@@ -10,7 +10,7 @@ Helper scripts: https://github.com/aersoares81/mia-helper-scripts
 - Collapsed file from sequencing (*.collapsed)
 - Reference genome (FASTA format)
 - MIA installed and available in PATH
-- mia_post_processing.batch script for post-processing
+- mia_post_processing.batch script for post-processing and the python script required for the batch file
 - Optional: BBTools clumpify.sh for duplicate removal
 
 ## Basic Usage
