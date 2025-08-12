@@ -19,3 +19,5 @@ Helper scripts: https://github.com/aersoares81/mia-helper-scripts
 Command-line prompt: mia -f collapsed_file -r reference 
 
 **PLEASE USE A BATCH SCRIPT, IT RUNS FOR HOURS!**
+
+Find help here for post processing: https://github.com/aersoares81/mia-helper-scripts?tab=readme-ov-file#readme 
