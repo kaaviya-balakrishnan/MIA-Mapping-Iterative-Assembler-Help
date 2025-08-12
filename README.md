@@ -18,6 +18,12 @@ Command-line prompt: mia -f collapsed_file -r reference
 
 **PLEASE USE A BATCH SCRIPT, IT RUNS FOR HOURS!**
 
+Workflow
+1. mia_updated.batch: runs MIA as a batch script on the server.
+2. mia_post_processing.batch: processes all the mia outputs in the directory. It generates stats, assembly and fasta sequence
+3. create_fasta_from_mia.py: incorporated into the mia_post_processing.batch
+
 Duplicate removal did not make significant changes
+mapping_from_fasta.batch is not necessary 
 
 Spermophilus folder contains scripts used for a research project 
