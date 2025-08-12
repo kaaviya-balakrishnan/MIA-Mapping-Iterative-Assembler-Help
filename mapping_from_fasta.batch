@@ -36,4 +36,5 @@ samtools flagstat ${fname}_SpermCit2_aln.bam > ${fname}_SpermCit2_aln.stats
 # Remove intermediate files
 rm ${fname}_SpermCit2.sai
 
+
 done
